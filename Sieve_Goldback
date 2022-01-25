@@ -1,0 +1,117 @@
+// Kevin Blum
+//
+// Sieve Goldbach Project
+//
+// Outputs prime numbers from 2 - int
+// and all even integers from 4 - int
+// made by only two prime numbers
+// 
+// October 11th
+//
+// Section 851
+// ID: 31542988
+
+public class Main {
+	
+	public static void main(String[] args) 
+	{
+		// Command line arguments
+		int num = args.length == 1 ? Integer.parseInt(args[0]) : 1000000;
+		int[] arrz = new int[num];
+		
+
+		// call to sieve to create array of prime numbers and the rest 0'ed out
+		sieve(arrz);
+		
+		// displaying prime number array
+		for(int k = 0; k < arrz.length; k++)
+		{
+			System.out.println(arrz[k]);
+		}
+		
+		System.out.println("\n\n");
+		
+		//call to goldbach
+		goldbach(arrz);
+		
+	}
+	
+	
+
+    // sieve method
+	// for every multiple of the starting number make it a zero
+	// then add to starting number and repeat same process
+	
+	public static void sieve(int[] array)
+	{
+		for(int a = 0; a < array.length; a++)
+		{
+			array[a] = a;
+		}
+
+		array[0] = 0;
+		array[1] = 0;
+		for(int i = 2; i < array.length; i++)
+		{
+			for( int j = 2 ; j < array.length; j++)
+			{
+				if(j % i == 0 && j !=i)
+				{
+					array[j] = 0;
+
+				}
+			}
+		}
+			
+	}
+	
+	/* goldbach creates even numbers from 4 - array size
+	   by only using two prime numbers . Have first prime 
+	   number then loop through prime number array for second number
+	   until they sum to first even number (4) add to even number for
+	   next target. if target is reached put first prime number back to 
+	   starting prime number (2) */
+	
+	public static void goldbach(int[] array)
+	{
+		
+		
+		
+		int ans = 4;
+		int x = 2;
+		int y = 2;
+		
+			
+		System.out.println(array.length);
+		while( x != array.length)
+		{
+			
+			while( y != array.length)
+			{
+				
+				if( ans - 2  == array.length )
+				{
+					break;
+				}
+				if( array[x] + array[y] == ans)
+			    {
+					System.out.println(array[x] +  "+" + array[y] + " = " + ans);
+					ans = ans + 2;
+					x = 0;
+				 }
+				 
+				 else
+				 {
+					y = y +1;
+				 }
+				
+				
+			}
+			y = 0;
+			x = x +1;
+		}
+		
+		
+	}
+	
+}
