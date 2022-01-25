@@ -5,3 +5,7 @@ Recursive Pascals Triangle
 Sieve Goldbach
 
 Rational Number
+
+Sorted List
+
+Binary Search Tree
