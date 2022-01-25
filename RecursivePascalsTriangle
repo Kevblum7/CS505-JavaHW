@@ -1,0 +1,63 @@
+// Kevin Blum
+// Section 851
+// ID: 31542988
+//
+// Recursive Pascals Triangle 
+//
+
+public class Main1 {
+	public static void main(String[] args)
+	{
+		
+		 int n = args.length == 1 ? Integer.parseInt(args[0]) : 10;
+
+	        for (int i = 1; i <= n; ++i) 
+	        {
+	            int[] arr = Pascal1.triangle(i);
+	            System.out.print((i < 10 ? " " : "") + i + ": ");
+	            for (int j : arr) 
+	            {
+	                System.out.print(j + " ");
+	            }
+	            System.out.println();
+	        }
+	}
+	
+}
+
+class Pascal1{
+	
+	public static int[] triangle(int n) {
+		
+		// Base Cases, n =1 and n = 2
+	    if(n == 1)
+	    {
+	    	int[] line = {1};
+	        return line;
+	    }
+	    if(n == 2)
+	    {
+	    	int[] line = {1,1};
+	        return line;
+	    }
+	    
+	    // recursive case
+	    
+	    int[] line = new int[n];
+	    int[] lin = triangle(n-1);
+	    
+	    // beginning and end of line = 1
+	    
+	    line[0] = 1;
+	    line[n-1] = 1;
+	    
+	    for(int i = 1; i < lin.length; i++)
+	    {
+	        line[i] = lin[i-1] + lin[i];
+	    }
+	    return line;
+		
+	}
+	
+	
+}
